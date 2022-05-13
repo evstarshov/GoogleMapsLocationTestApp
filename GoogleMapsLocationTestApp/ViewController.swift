@@ -19,7 +19,6 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setMapViewConstraints()
-        //configureMap()
     }
     
     // MARK: IBActions
@@ -43,6 +42,7 @@ class ViewController: UIViewController {
         let coordinate = CLLocationCoordinate2D(latitude: 55.753215, longitude: 37.622504)
         let camera = GMSCameraPosition.camera(withTarget: coordinate, zoom: 17)
         mapView.camera = camera
+        mapView.isMyLocationEnabled = true
     }
 
 

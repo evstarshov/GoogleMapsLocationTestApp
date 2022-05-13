@@ -24,10 +24,9 @@
             </objects>
             <point key="canvasLocation" x="-826" y="98"/>
         </scene>
-        <!--View Controller-->
+        <!--Map-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
                 <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="GoogleMapsLocationTestApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
@@ -42,11 +41,18 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
-                    <navigationItem key="navigationItem" id="hBb-Be-TLZ"/>
+                    <navigationItem key="navigationItem" title="Map" id="hBb-Be-TLZ">
+                        <barButtonItem key="rightBarButtonItem" title="goTo" id="rgk-Vv-P9b">
+                            <connections>
+                                <action selector="goTo:" destination="BYZ-38-t0r" id="wbl-Ky-rXu"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="mapView" destination="Avo-Vs-x6Y" id="0SZ-yk-p5t"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="131.8840579710145" y="97.767857142857139"/>
         </scene>
