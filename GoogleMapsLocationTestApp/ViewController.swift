@@ -19,6 +19,7 @@ class ViewController: UIViewController {
     // MARK: Properties
     
     private let coordinate = CLLocationCoordinate2D(latitude: 55.753215, longitude: 37.622504)
+    private var marker: GMSMarker?
     
     // MARK: Lifecycle methods
     
@@ -34,9 +35,7 @@ class ViewController: UIViewController {
     }
     
     @IBAction func addMarker(sender: UIButton!) {
-        print("Placing marker")
-        let marker = GMSMarker(position: coordinate)
-        marker.map = mapView
+        marker == nil ? addMarker() : removeMarker()
     }
     
     // MARK: Private methods
@@ -60,6 +59,20 @@ class ViewController: UIViewController {
         let camera = GMSCameraPosition.camera(withTarget: coordinate, zoom: 17)
         mapView.camera = camera
         mapView.isMyLocationEnabled = true
+    }
+    
+    private func addMarker() {
+        print("Placing marker")
+        let marker = GMSMarker(position: coordinate)
+        marker.icon = GMSMarker.markerImage(with: .green)
+        marker.map = mapView
+        self.marker = marker
+    }
+    
+    private func removeMarker() {
+        print("removing marker")
+        marker?.map = nil
+        marker = nil
     }
 }
 
