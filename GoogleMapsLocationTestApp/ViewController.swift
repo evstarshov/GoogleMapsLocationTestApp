@@ -20,11 +20,13 @@ class ViewController: UIViewController {
     
     private let coordinate = CLLocationCoordinate2D(latitude: 55.753215, longitude: 37.622504)
     private var marker: GMSMarker?
+    private var manualMarker: GMSMarker?
     
     // MARK: Lifecycle methods
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        configureMap()
         setMapViewConstraints()
     }
     
@@ -59,6 +61,7 @@ class ViewController: UIViewController {
         let camera = GMSCameraPosition.camera(withTarget: coordinate, zoom: 17)
         mapView.camera = camera
         mapView.isMyLocationEnabled = true
+        mapView.delegate = self
     }
     
     private func addMarker() {
@@ -76,3 +79,15 @@ class ViewController: UIViewController {
     }
 }
 
+extension ViewController: GMSMapViewDelegate {
+    func mapView(_ mapView: GMSMapView, didTapAt coordinate: CLLocationCoordinate2D) {
+        print(coordinate)
+        if let manualMarker = manualMarker {
+            manualMarker.position = coordinate
+        } else {
+            let marker = GMSMarker(position: coordinate)
+            marker.map = mapView
+            self.manualMarker = marker
+        }
+    }
+}
