@@ -58,9 +58,14 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
                     <navigationItem key="navigationItem" title="Map" id="hBb-Be-TLZ">
-                        <barButtonItem key="rightBarButtonItem" title="goTo" id="rgk-Vv-P9b">
+                        <barButtonItem key="leftBarButtonItem" title="Update Location" id="kdb-gn-Adc">
                             <connections>
-                                <action selector="goTo:" destination="BYZ-38-t0r" id="wbl-Ky-rXu"/>
+                                <action selector="updateLocation:" destination="BYZ-38-t0r" id="WU1-Hy-SeL"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="Current Location" id="rgk-Vv-P9b">
+                            <connections>
+                                <action selector="currentLocation:" destination="BYZ-38-t0r" id="xUZ-Ih-03h"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>

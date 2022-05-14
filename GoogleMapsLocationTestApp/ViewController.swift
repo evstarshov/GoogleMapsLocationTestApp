@@ -18,26 +18,31 @@ class ViewController: UIViewController {
     
     // MARK: Properties
     
-    private let coordinate = CLLocationCoordinate2D(latitude: 55.753215, longitude: 37.622504)
-    private var marker: GMSMarker?
+    private var coordinate: CLLocationCoordinate2D?
     private var manualMarker: GMSMarker?
+    private var locationManager: CLLocationManager?
     
     // MARK: Lifecycle methods
     
     override func viewDidLoad() {
         super.viewDidLoad()
         configureMap()
+        configureLocationManager()
         setMapViewConstraints()
     }
     
     // MARK: IBActions
     
-    @IBAction func goTo(_ sender: Any) {
-        mapView.animate(toLocation: coordinate)
+    @IBAction func currentLocation(_ sender: Any) {
+        locationManager?.requestLocation()
     }
     
     @IBAction func addMarker(sender: UIButton!) {
-        marker == nil ? addMarker() : removeMarker()
+        manualMarker == nil ? addMarker() : removeMarker()
+    }
+    
+    @IBAction func updateLocation(_ sender: Any) {
+        locationManager?.startUpdatingLocation()
     }
     
     // MARK: Private methods
@@ -58,7 +63,7 @@ class ViewController: UIViewController {
     }
     
     private func configureMap() {
-        let camera = GMSCameraPosition.camera(withTarget: coordinate, zoom: 17)
+        let camera = GMSCameraPosition.camera(withTarget: coordinate ?? CLLocationCoordinate2D(latitude: 55.7522, longitude: 37.6156), zoom: 5)
         mapView.camera = camera
         mapView.isMyLocationEnabled = true
         mapView.delegate = self
@@ -66,20 +71,29 @@ class ViewController: UIViewController {
     
     private func addMarker() {
         print("Placing marker")
-        let marker = GMSMarker(position: coordinate)
-        marker.icon = GMSMarker.markerImage(with: .green)
+        let marker = GMSMarker(position: coordinate ?? CLLocationCoordinate2D(latitude: 55.7522, longitude: 37.6156))
         marker.map = mapView
-        self.marker = marker
+        self.manualMarker = marker
     }
     
     private func removeMarker() {
         print("removing marker")
-        marker?.map = nil
-        marker = nil
+        manualMarker?.map = nil
+        manualMarker = nil
+    }
+    
+    private func configureLocationManager() {
+        locationManager = CLLocationManager()
+        locationManager?.delegate = self
+        locationManager?.requestAlwaysAuthorization()
+        locationManager?.requestWhenInUseAuthorization()
     }
 }
 
+// MARK: Extensions for ViewController
+
 extension ViewController: GMSMapViewDelegate {
+    
     func mapView(_ mapView: GMSMapView, didTapAt coordinate: CLLocationCoordinate2D) {
         print(coordinate)
         if let manualMarker = manualMarker {
@@ -91,3 +105,18 @@ extension ViewController: GMSMapViewDelegate {
         }
     }
 }
+
+extension ViewController: CLLocationManagerDelegate {
+    
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        print(locations.first)
+        coordinate = CLLocationCoordinate2D(latitude: locations.last?.coordinate.latitude ?? 55.7522, longitude: locations.last?.coordinate.longitude ?? 37.6156)
+        addMarker()
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+        print(error)
+    }
+}
+
+
