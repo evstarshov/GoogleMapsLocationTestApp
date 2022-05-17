@@ -32,13 +32,23 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Avo-Vs-x6Y" customClass="GMSMapView">
-                                <rect key="frame" x="0.0" y="88" width="414" height="774"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Avo-Vs-x6Y" customClass="GMSMapView">
+                                <rect key="frame" x="0.0" y="88" width="414" height="735"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </view>
+                            <stackView opaque="NO" contentMode="scaleToFill" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="ju5-ys-0Mm">
+                                <rect key="frame" x="5" y="831" width="404" height="31"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jij-Yn-f27">
-                                        <rect key="frame" x="307" y="743" width="99" height="31"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="R2j-3p-fuH">
+                                        <rect key="frame" x="0.0" y="0.0" width="124.5" height="31"/>
+                                        <color key="backgroundColor" systemColor="systemBlueColor"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain" title="Begin Track">
+                                            <color key="baseForegroundColor" systemColor="systemBackgroundColor"/>
+                                        </buttonConfiguration>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jij-Yn-f27">
+                                        <rect key="frame" x="139.5" y="0.0" width="125" height="31"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="plain" title="Add marker">
                                             <backgroundConfiguration key="background">
@@ -50,12 +60,28 @@
                                             <action selector="addMarkerWithSender:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Qjm-8Q-p6H"/>
                                         </connections>
                                     </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ilh-YG-rnN">
+                                        <rect key="frame" x="279.5" y="0.0" width="124.5" height="31"/>
+                                        <color key="backgroundColor" systemColor="systemBlueColor"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain" title="Stop Track">
+                                            <color key="baseForegroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </buttonConfiguration>
+                                    </button>
                                 </subviews>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                            </view>
+                            </stackView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="Avo-Vs-x6Y" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="ETF-3Q-cLB"/>
+                            <constraint firstItem="Avo-Vs-x6Y" firstAttribute="centerX" secondItem="ju5-ys-0Mm" secondAttribute="centerX" id="I1U-NG-XIF"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="ju5-ys-0Mm" secondAttribute="trailing" constant="5" id="JXL-De-jjf"/>
+                            <constraint firstItem="ju5-ys-0Mm" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="YQM-sI-tIp"/>
+                            <constraint firstItem="ju5-ys-0Mm" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="5" id="apa-2Q-iyp"/>
+                            <constraint firstItem="Avo-Vs-x6Y" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="nS2-eG-Iwo"/>
+                            <constraint firstItem="ju5-ys-0Mm" firstAttribute="top" secondItem="Avo-Vs-x6Y" secondAttribute="bottom" constant="8" symbolic="YES" id="u9F-hX-GlR"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Map" id="hBb-Be-TLZ">
                         <barButtonItem key="leftBarButtonItem" title="Update Location" id="kdb-gn-Adc">
@@ -71,7 +97,9 @@
                     </navigationItem>
                     <connections>
                         <outlet property="addMarkerButton" destination="Jij-Yn-f27" id="HCZ-fn-xAi"/>
+                        <outlet property="beginTrackButton" destination="R2j-3p-fuH" id="C9w-Jp-4LE"/>
                         <outlet property="mapView" destination="Avo-Vs-x6Y" id="0SZ-yk-p5t"/>
+                        <outlet property="stopTrackButton" destination="Ilh-YG-rnN" id="lnT-ci-PkO"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -85,6 +113,9 @@
         </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemBlueColor">
+            <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

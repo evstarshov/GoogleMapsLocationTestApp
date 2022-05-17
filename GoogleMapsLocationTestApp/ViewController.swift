@@ -14,6 +14,8 @@ class ViewController: UIViewController {
     
     @IBOutlet weak var mapView: GMSMapView!
     @IBOutlet weak var addMarkerButton: UIButton!
+    @IBOutlet weak var beginTrackButton: UIButton!
+    @IBOutlet weak var stopTrackButton: UIButton!
     
     
     // MARK: Properties
@@ -31,7 +33,6 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         configureMap()
         configureLocationManager()
-        setMapViewConstraints()
     }
     
     // MARK: IBActions
@@ -54,23 +55,6 @@ class ViewController: UIViewController {
     }
     
     // MARK: Private methods
-    
-    // ----- UI Configuration
-    
-    private func setMapViewConstraints() {
-        self.mapView.translatesAutoresizingMaskIntoConstraints = false
-        self.mapView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor).isActive = true
-        self.mapView.leftAnchor.constraint(equalTo: self.view.leftAnchor).isActive = true
-        self.mapView.rightAnchor.constraint(equalTo: self.view.rightAnchor).isActive = true
-        self.mapView.widthAnchor.constraint(equalTo: self.view.widthAnchor).isActive = true
-        self.mapView.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor).isActive = true
-        self.mapView.addSubview(addMarkerButton)
-        self.addMarkerButton.translatesAutoresizingMaskIntoConstraints = false
-        self.addMarkerButton.backgroundColor = .systemBlue
-        self.addMarkerButton.rightAnchor.constraint(equalTo: self.mapView.rightAnchor).isActive = true
-        self.addMarkerButton.leftAnchor.constraint(equalTo: self.mapView.leftAnchor).isActive = true
-        self.addMarkerButton.bottomAnchor.constraint(equalTo: self.mapView.bottomAnchor).isActive = true
-    }
     
     // ----- Map methods
     
