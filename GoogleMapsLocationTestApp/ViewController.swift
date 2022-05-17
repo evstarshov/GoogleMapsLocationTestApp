@@ -18,9 +18,12 @@ class ViewController: UIViewController {
     
     // MARK: Properties
     
+    private var beginBackgroundTask: UIBackgroundTaskIdentifier?
     private var coordinate: CLLocationCoordinate2D?
     private var manualMarker: GMSMarker?
     private var locationManager: CLLocationManager?
+    private var route: GMSPolyline?
+    private var routePath: GMSMutablePath?
     
     // MARK: Lifecycle methods
     
@@ -35,6 +38,7 @@ class ViewController: UIViewController {
     
     @IBAction func currentLocation(_ sender: Any) {
         locationManager?.requestLocation()
+        configureMap()
     }
     
     @IBAction func addMarker(sender: UIButton!) {
@@ -42,10 +46,16 @@ class ViewController: UIViewController {
     }
     
     @IBAction func updateLocation(_ sender: Any) {
+        route?.map = nil
+        route = GMSPolyline()
+        routePath = GMSMutablePath()
+        route?.map = mapView
         locationManager?.startUpdatingLocation()
     }
     
     // MARK: Private methods
+    
+    // ----- UI Configuration
     
     private func setMapViewConstraints() {
         self.mapView.translatesAutoresizingMaskIntoConstraints = false
@@ -62,8 +72,10 @@ class ViewController: UIViewController {
         self.addMarkerButton.bottomAnchor.constraint(equalTo: self.mapView.bottomAnchor).isActive = true
     }
     
+    // ----- Map methods
+    
     private func configureMap() {
-        let camera = GMSCameraPosition.camera(withTarget: coordinate ?? CLLocationCoordinate2D(latitude: 55.7522, longitude: 37.6156), zoom: 5)
+        let camera = GMSCameraPosition.camera(withTarget: coordinate ?? CLLocationCoordinate2D(latitude: 55.7522, longitude: 37.6156), zoom: 12)
         mapView.camera = camera
         mapView.isMyLocationEnabled = true
         mapView.delegate = self
@@ -86,7 +98,21 @@ class ViewController: UIViewController {
         locationManager = CLLocationManager()
         locationManager?.delegate = self
         locationManager?.requestAlwaysAuthorization()
+        locationManager?.allowsBackgroundLocationUpdates = true
+        locationManager?.pausesLocationUpdatesAutomatically = false
+        locationManager?.startMonitoringSignificantLocationChanges()
         locationManager?.requestWhenInUseAuthorization()
+    }
+    
+    private func configureBackGroundMode() {
+        NotificationCenter.default.addObserver(
+            forName: UIApplication.didEnterBackgroundNotification, object: nil, queue: OperationQueue.main) { [weak self] _ in
+        
+        }
+        
+        NotificationCenter.default.addObserver(
+            forName: UIApplication.didEnterBackgroundNotification, object: nil, queue: OperationQueue.main) { [weak self] _ in
+        }
     }
 }
 
@@ -109,9 +135,12 @@ extension ViewController: GMSMapViewDelegate {
 extension ViewController: CLLocationManagerDelegate {
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        guard let location = locations.last else { return }
+        routePath?.add(location.coordinate)
+        route?.path = routePath
         print(locations.first)
-        coordinate = CLLocationCoordinate2D(latitude: locations.last?.coordinate.latitude ?? 55.7522, longitude: locations.last?.coordinate.longitude ?? 37.6156)
-        addMarker()
+        let position = GMSCameraPosition.camera(withTarget: location.coordinate, zoom: 15)
+        mapView.animate(to: position)
     }
     
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
