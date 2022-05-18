@@ -54,6 +54,13 @@ final class RealmDB {
         }
     }
     
+    public func deleteAll() {
+        let realm = try! Realm()
+        try! realm.write {
+            realm.deleteAll()
+        }
+    }
+    
     func getPersistedRoutes() -> [LocationObject] {
         let realm = try! Realm()
         return Array(realm.objects(LocationObject.self))

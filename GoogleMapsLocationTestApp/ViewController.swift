@@ -59,9 +59,6 @@ class ViewController: UIViewController {
     
     @IBAction func beginTrackButtonTapped() {
         cllocationCoordinates.removeAll()
-//        route?.map = nil
-//        route = GMSPolyline()
-//        routePath = GMSMutablePath()
         route?.map = mapView
         locationManager?.startUpdatingLocation()
         isTracking = true
@@ -69,6 +66,7 @@ class ViewController: UIViewController {
     
     @IBAction func stopTrackButtonTapped() {
         markers.forEach { $0.map = nil }
+        database.deleteAll()
         database.saveToRealm(cllocationCoordinates)
         route?.map = nil
         cllocationCoordinates.removeAll()
@@ -92,7 +90,6 @@ class ViewController: UIViewController {
         route?.map = mapView
         let position = GMSCameraPosition.camera(withTarget: cllocationCoordinates.middle?.coordinate ?? CLLocationCoordinate2D(latitude: 55.7522, longitude: 37.6156), zoom: 12)
         mapView.animate(to: position)
-        print(routePath)
     }
     
     // MARK: Private methods
