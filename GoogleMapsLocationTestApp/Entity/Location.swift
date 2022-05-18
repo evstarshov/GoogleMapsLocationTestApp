@@ -27,3 +27,6 @@ final class Location: Object, Codable {
 }
 
 
+final class LocationObject: Object {
+    let coordinates = List<Location>()
+}

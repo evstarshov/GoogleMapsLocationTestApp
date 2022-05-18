@@ -23,13 +23,19 @@ class ViewController: UIViewController {
     // MARK: Properties
     
     private let database = RealmDB()
+    private let locationObject = LocationObject()
     private var beginBackgroundTask: UIBackgroundTaskIdentifier?
     private var coordinate: CLLocationCoordinate2D?
     private var manualMarker: GMSMarker?
     private var locationManager: CLLocationManager?
     private var route: GMSPolyline?
     private var routePath: GMSMutablePath?
-    private var locationsDB = [Location]()
+    private var locationsArr = [Location]()
+    private var cllocationCoordinates = [CLLocation]()
+    private var locationsDB: Results<Location>?
+    private var markers = [GMSMarker]()
+    private var isTracking: Bool = false
+
     
     // MARK: Lifecycle methods
     
@@ -37,6 +43,7 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         configureMap()
         configureLocationManager()
+        print("Realm file is here: \(Realm.Configuration.defaultConfiguration.fileURL!)")
     }
     
     // MARK: IBActions
@@ -51,17 +58,41 @@ class ViewController: UIViewController {
     }
     
     @IBAction func beginTrackButtonTapped() {
-        route?.map = nil
-        route = GMSPolyline()
-        routePath = GMSMutablePath()
+        cllocationCoordinates.removeAll()
+//        route?.map = nil
+//        route = GMSPolyline()
+//        routePath = GMSMutablePath()
         route?.map = mapView
         locationManager?.startUpdatingLocation()
+        isTracking = true
     }
     
     @IBAction func stopTrackButtonTapped() {
-        database.save(locationsDB)
+        markers.forEach { $0.map = nil }
+        database.saveToRealm(cllocationCoordinates)
         route?.map = nil
+        cllocationCoordinates.removeAll()
         locationManager?.stopUpdatingLocation()
+        isTracking = false
+        
+    }
+    
+    @IBAction func lastRouteButtonTapped() {
+        guard isTracking == false else { showAlert()
+            return
+        }
+        loadRoute(database.getPersistedRoutes(), index: 0)
+        route?.map = nil
+        route = GMSPolyline()
+        routePath = GMSMutablePath()
+        cllocationCoordinates.forEach { coordinate in
+            routePath?.add(coordinate.coordinate)
+        }
+        route?.path = routePath
+        route?.map = mapView
+        let position = GMSCameraPosition.camera(withTarget: cllocationCoordinates.middle?.coordinate ?? CLLocationCoordinate2D(latitude: 55.7522, longitude: 37.6156), zoom: 12)
+        mapView.animate(to: position)
+        print(routePath)
     }
     
     // MARK: Private methods
@@ -80,6 +111,7 @@ class ViewController: UIViewController {
         let marker = GMSMarker(position: coordinate ?? CLLocationCoordinate2D(latitude: 55.7522, longitude: 37.6156))
         marker.map = mapView
         self.manualMarker = marker
+        markers.append(marker)
     }
     
     private func removeMarker() {
@@ -98,15 +130,20 @@ class ViewController: UIViewController {
         locationManager?.requestWhenInUseAuthorization()
     }
     
-    private func configureBackGroundMode() {
-        NotificationCenter.default.addObserver(
-            forName: UIApplication.didEnterBackgroundNotification, object: nil, queue: OperationQueue.main) { [weak self] _ in
-        
+    private func loadRoute(_ routesArray: [LocationObject], index: Int = 0) {
+        let currentRoute = routesArray[index]
+        currentRoute.coordinates.forEach { coordinate in
+            cllocationCoordinates.append(coordinate.clLocation)
         }
-        
-        NotificationCenter.default.addObserver(
-            forName: UIApplication.didEnterBackgroundNotification, object: nil, queue: OperationQueue.main) { [weak self] _ in
-        }
+    }
+    
+    // ----- Alerts and notifications
+    
+    private func showAlert() {
+        let alertVC = UIAlertController(title: "Error", message: "Tracking is on. Disable tracking", preferredStyle: .alert)
+        let alertItem = UIAlertAction(title: "Ok", style: .cancel)
+        alertVC.addAction(alertItem)
+        present(alertVC, animated: true)
     }
 }
 
@@ -130,15 +167,14 @@ extension ViewController: CLLocationManagerDelegate {
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         guard let location = locations.last else { return }
+        route = GMSPolyline()
+        routePath = GMSMutablePath()
         routePath?.add(location.coordinate)
         route?.path = routePath
-        print(locations.last)
         let position = GMSCameraPosition.camera(withTarget: location.coordinate, zoom: 15)
         coordinate = location.coordinate
         mapView.animate(to: position)
-        let latLocation = Location(clLocation: location)
-        addMarker()
-        locationsDB.append(latLocation!)
+        cllocationCoordinates.append(location)
     }
     
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
