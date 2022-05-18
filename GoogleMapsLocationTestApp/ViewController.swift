@@ -79,6 +79,7 @@ class ViewController: UIViewController {
         guard isTracking == false else { showAlert()
             return
         }
+        cllocationCoordinates.removeAll()
         loadRoute(database.getPersistedRoutes(), index: 0)
         route?.map = nil
         route = GMSPolyline()
@@ -137,8 +138,15 @@ class ViewController: UIViewController {
     // ----- Alerts and notifications
     
     private func showAlert() {
-        let alertVC = UIAlertController(title: "Error", message: "Tracking is on. Disable tracking", preferredStyle: .alert)
-        let alertItem = UIAlertAction(title: "Ok", style: .cancel)
+        let alertVC = UIAlertController(title: "Error", message: "Tracking is on. Disabling tracking", preferredStyle: .alert)
+        let alertItem = UIAlertAction(title: "Ok", style: .cancel) { [weak self] _ in
+            self?.database.deleteAll()
+            self?.database.saveToRealm(self!.cllocationCoordinates)
+            self?.route?.map = nil
+            self?.cllocationCoordinates.removeAll()
+            self?.locationManager?.stopUpdatingLocation()
+            self?.isTracking = false
+        }
         alertVC.addAction(alertItem)
         present(alertVC, animated: true)
     }
