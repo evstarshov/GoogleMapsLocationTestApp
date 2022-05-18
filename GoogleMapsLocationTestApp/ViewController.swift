@@ -7,6 +7,8 @@
 
 import UIKit
 import GoogleMaps
+import Realm
+import RealmSwift
 
 class ViewController: UIViewController {
     
@@ -20,12 +22,14 @@ class ViewController: UIViewController {
     
     // MARK: Properties
     
+    private let database = RealmDB()
     private var beginBackgroundTask: UIBackgroundTaskIdentifier?
     private var coordinate: CLLocationCoordinate2D?
     private var manualMarker: GMSMarker?
     private var locationManager: CLLocationManager?
     private var route: GMSPolyline?
     private var routePath: GMSMutablePath?
+    private var locationsDB = [Location]()
     
     // MARK: Lifecycle methods
     
@@ -46,12 +50,18 @@ class ViewController: UIViewController {
         manualMarker == nil ? addMarker() : removeMarker()
     }
     
-    @IBAction func updateLocation(_ sender: Any) {
+    @IBAction func beginTrackButtonTapped() {
         route?.map = nil
         route = GMSPolyline()
         routePath = GMSMutablePath()
         route?.map = mapView
         locationManager?.startUpdatingLocation()
+    }
+    
+    @IBAction func stopTrackButtonTapped() {
+        database.save(locationsDB)
+        route?.map = nil
+        locationManager?.stopUpdatingLocation()
     }
     
     // MARK: Private methods
@@ -122,9 +132,13 @@ extension ViewController: CLLocationManagerDelegate {
         guard let location = locations.last else { return }
         routePath?.add(location.coordinate)
         route?.path = routePath
-        print(locations.first)
+        print(locations.last)
         let position = GMSCameraPosition.camera(withTarget: location.coordinate, zoom: 15)
+        coordinate = location.coordinate
         mapView.animate(to: position)
+        let latLocation = Location(clLocation: location)
+        addMarker()
+        locationsDB.append(latLocation!)
     }
     
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
