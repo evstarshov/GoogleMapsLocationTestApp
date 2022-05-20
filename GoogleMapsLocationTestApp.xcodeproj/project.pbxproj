@@ -18,6 +18,7 @@
 		3A17EB7E282E4D1700CFDB83 /* GoogleMapsLocationTestAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A17EB7D282E4D1700CFDB83 /* GoogleMapsLocationTestAppTests.swift */; };
 		3A17EB88282E4D1700CFDB83 /* GoogleMapsLocationTestAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A17EB87282E4D1700CFDB83 /* GoogleMapsLocationTestAppUITests.swift */; };
 		3A17EB8A282E4D1700CFDB83 /* GoogleMapsLocationTestAppUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A17EB89282E4D1700CFDB83 /* GoogleMapsLocationTestAppUITestsLaunchTests.swift */; };
+		3A2320832837D2CB00F5CD5C /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A2320822837D2CB00F5CD5C /* User.swift */; };
 		3A626A0A2833F586005496FC /* RealmDB.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A626A092833F586005496FC /* RealmDB.swift */; };
 		3A626A0D2833F668005496FC /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A626A0C2833F668005496FC /* Location.swift */; };
 		3A97B599283508C5007CB1AE /* ArrayMidlle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A97B598283508C5007CB1AE /* ArrayMidlle.swift */; };
@@ -57,6 +58,7 @@
 		3A17EB83282E4D1700CFDB83 /* GoogleMapsLocationTestAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GoogleMapsLocationTestAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3A17EB87282E4D1700CFDB83 /* GoogleMapsLocationTestAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleMapsLocationTestAppUITests.swift; sourceTree = "<group>"; };
 		3A17EB89282E4D1700CFDB83 /* GoogleMapsLocationTestAppUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleMapsLocationTestAppUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		3A2320822837D2CB00F5CD5C /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		3A626A092833F586005496FC /* RealmDB.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmDB.swift; sourceTree = "<group>"; };
 		3A626A0C2833F668005496FC /* Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
 		3A97B598283508C5007CB1AE /* ArrayMidlle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArrayMidlle.swift; sourceTree = "<group>"; };
@@ -157,6 +159,7 @@
 			isa = PBXGroup;
 			children = (
 				3A626A0C2833F668005496FC /* Location.swift */,
+				3A2320822837D2CB00F5CD5C /* User.swift */,
 			);
 			path = Entity;
 			sourceTree = "<group>";
@@ -481,6 +484,7 @@
 				3A17EB69282E4D1600CFDB83 /* SceneDelegate.swift in Sources */,
 				3A97B599283508C5007CB1AE /* ArrayMidlle.swift in Sources */,
 				3A626A0A2833F586005496FC /* RealmDB.swift in Sources */,
+				3A2320832837D2CB00F5CD5C /* User.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
