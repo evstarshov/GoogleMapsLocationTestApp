@@ -21,6 +21,7 @@ class SignUpViewController: UIViewController {
     // MARK: Properties
     
     private let database = RealmDB()
+    private let realm = try! Realm()
     private var users: Results<User>?
     private var usertoDB = [User]()
     
@@ -43,7 +44,12 @@ class SignUpViewController: UIViewController {
     private func signNewUser() {
         print("sign new user")
         guard loginTextField.text != "" && passwordTextField.text != "" && confirmPassword.text != "" && confirmPassword.text == passwordTextField.text else { showAlert(); return }
-        if users!.contains(where: { $0.login == loginTextField.text }) == true {
+        guard let users = users else { return }
+        if users.contains(where: { $0.login == loginTextField.text }) == true {
+            guard let index = users.firstIndex(where: { $0.login == loginTextField.text }) else { return }
+            try! realm.write ({
+            users[index].password = passwordTextField.text!
+            })
             showAlertUserisinDB()
         } else {
             usertoDB.append(User(login: loginTextField.text!, password: passwordTextField.text!))

@@ -82,10 +82,10 @@
                         <viewLayoutGuide key="safeArea" id="yby-CI-Piq"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="dfg-Oa-25G" firstAttribute="top" secondItem="fkA-tf-68H" secondAttribute="bottom" constant="287" id="PYY-fg-Uo0"/>
+                            <constraint firstItem="dfg-Oa-25G" firstAttribute="bottom" secondItem="yby-CI-Piq" secondAttribute="bottom" id="Ggk-AH-lPa"/>
+                            <constraint firstItem="dfg-Oa-25G" firstAttribute="centerX" secondItem="no7-yq-mV3" secondAttribute="centerX" id="ktB-hF-j1C"/>
                             <constraint firstItem="fkA-tf-68H" firstAttribute="centerY" secondItem="no7-yq-mV3" secondAttribute="centerY" id="u72-6x-57M"/>
                             <constraint firstItem="fkA-tf-68H" firstAttribute="centerX" secondItem="no7-yq-mV3" secondAttribute="centerX" id="uvG-x1-gRe"/>
-                            <constraint firstItem="dfg-Oa-25G" firstAttribute="centerX" secondItem="no7-yq-mV3" secondAttribute="centerX" id="xjk-ix-VLE"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="aBu-Ja-3D2"/>
