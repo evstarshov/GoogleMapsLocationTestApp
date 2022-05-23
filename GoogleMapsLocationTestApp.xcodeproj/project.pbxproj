@@ -19,6 +19,8 @@
 		3A17EB88282E4D1700CFDB83 /* GoogleMapsLocationTestAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A17EB87282E4D1700CFDB83 /* GoogleMapsLocationTestAppUITests.swift */; };
 		3A17EB8A282E4D1700CFDB83 /* GoogleMapsLocationTestAppUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A17EB89282E4D1700CFDB83 /* GoogleMapsLocationTestAppUITestsLaunchTests.swift */; };
 		3A2320832837D2CB00F5CD5C /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A2320822837D2CB00F5CD5C /* User.swift */; };
+		3A2320862837DB5C00F5CD5C /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A2320852837DB5C00F5CD5C /* LoginViewController.swift */; };
+		3A2320882837DB7A00F5CD5C /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A2320872837DB7A00F5CD5C /* SignUpViewController.swift */; };
 		3A626A0A2833F586005496FC /* RealmDB.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A626A092833F586005496FC /* RealmDB.swift */; };
 		3A626A0D2833F668005496FC /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A626A0C2833F668005496FC /* Location.swift */; };
 		3A97B599283508C5007CB1AE /* ArrayMidlle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A97B598283508C5007CB1AE /* ArrayMidlle.swift */; };
@@ -59,6 +61,8 @@
 		3A17EB87282E4D1700CFDB83 /* GoogleMapsLocationTestAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleMapsLocationTestAppUITests.swift; sourceTree = "<group>"; };
 		3A17EB89282E4D1700CFDB83 /* GoogleMapsLocationTestAppUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleMapsLocationTestAppUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		3A2320822837D2CB00F5CD5C /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		3A2320852837DB5C00F5CD5C /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		3A2320872837DB7A00F5CD5C /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		3A626A092833F586005496FC /* RealmDB.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmDB.swift; sourceTree = "<group>"; };
 		3A626A0C2833F668005496FC /* Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
 		3A97B598283508C5007CB1AE /* ArrayMidlle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArrayMidlle.swift; sourceTree = "<group>"; };
@@ -124,12 +128,12 @@
 		3A17EB65282E4D1600CFDB83 /* GoogleMapsLocationTestApp */ = {
 			isa = PBXGroup;
 			children = (
+				3A2320842837DB2C00F5CD5C /* Flows */,
 				3A97B597283508B0007CB1AE /* Extensions */,
 				3A626A0B2833F656005496FC /* Entity */,
 				3AF94B352833BF3A00137A41 /* Database */,
 				3A17EB66282E4D1600CFDB83 /* AppDelegate.swift */,
 				3A17EB68282E4D1600CFDB83 /* SceneDelegate.swift */,
-				3A17EB6A282E4D1600CFDB83 /* ViewController.swift */,
 				3A17EB6C282E4D1600CFDB83 /* Main.storyboard */,
 				3A17EB6F282E4D1700CFDB83 /* Assets.xcassets */,
 				3A17EB71282E4D1700CFDB83 /* LaunchScreen.storyboard */,
@@ -153,6 +157,16 @@
 				3A17EB89282E4D1700CFDB83 /* GoogleMapsLocationTestAppUITestsLaunchTests.swift */,
 			);
 			path = GoogleMapsLocationTestAppUITests;
+			sourceTree = "<group>";
+		};
+		3A2320842837DB2C00F5CD5C /* Flows */ = {
+			isa = PBXGroup;
+			children = (
+				3A17EB6A282E4D1600CFDB83 /* ViewController.swift */,
+				3A2320852837DB5C00F5CD5C /* LoginViewController.swift */,
+				3A2320872837DB7A00F5CD5C /* SignUpViewController.swift */,
+			);
+			path = Flows;
 			sourceTree = "<group>";
 		};
 		3A626A0B2833F656005496FC /* Entity */ = {
@@ -482,7 +496,9 @@
 				3A17EB67282E4D1600CFDB83 /* AppDelegate.swift in Sources */,
 				3A626A0D2833F668005496FC /* Location.swift in Sources */,
 				3A17EB69282E4D1600CFDB83 /* SceneDelegate.swift in Sources */,
+				3A2320862837DB5C00F5CD5C /* LoginViewController.swift in Sources */,
 				3A97B599283508C5007CB1AE /* ArrayMidlle.swift in Sources */,
+				3A2320882837DB7A00F5CD5C /* SignUpViewController.swift in Sources */,
 				3A626A0A2833F586005496FC /* RealmDB.swift in Sources */,
 				3A2320832837D2CB00F5CD5C /* User.swift in Sources */,
 			);

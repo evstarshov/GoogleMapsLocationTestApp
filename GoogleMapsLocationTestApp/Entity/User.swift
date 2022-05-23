@@ -12,4 +12,16 @@ import RealmSwift
 final class User: Object, Codable {
     @objc dynamic var login: String = ""
     @objc dynamic var password: String = ""
+    
+    convenience init(login: String, password: String) {
+        self.init()
+        self.login = login
+        self.password = password
+    }
+
+}
+
+
+final class UserObject: Object {
+    let users = List<User>()
 }

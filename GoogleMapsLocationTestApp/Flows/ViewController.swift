@@ -67,7 +67,7 @@ class ViewController: UIViewController {
     @IBAction func stopTrackButtonTapped() {
         markers.forEach { $0.map = nil }
         database.deleteAll()
-        database.saveToRealm(cllocationCoordinates)
+        database.saveCLLToRealm(cllocationCoordinates)
         route?.map = nil
         cllocationCoordinates.removeAll()
         locationManager?.stopUpdatingLocation()
@@ -141,7 +141,7 @@ class ViewController: UIViewController {
         let alertVC = UIAlertController(title: "Error", message: "Tracking is on. Disabling tracking", preferredStyle: .alert)
         let alertItem = UIAlertAction(title: "Ok", style: .cancel) { [weak self] _ in
             self?.database.deleteAll()
-            self?.database.saveToRealm(self!.cllocationCoordinates)
+            self?.database.saveCLLToRealm(self!.cllocationCoordinates)
             self?.route?.map = nil
             self?.cllocationCoordinates.removeAll()
             self?.locationManager?.stopUpdatingLocation()

@@ -25,7 +25,16 @@ final class RealmDB {
         }
     }
     
-    public func saveToRealm(_ coordinates: [CLLocation]) {
+    public func saveUsers(_ items: [User]) {
+        let realm = try! Realm()
+        do {
+            try! realm.write {
+                realm.add(items)
+            }
+        }
+    }
+    
+    public func saveCLLToRealm(_ coordinates: [CLLocation]) {
         let locationObject = LocationObject()
         let realm = try! Realm()
         coordinates.forEach { coordinate in
@@ -41,9 +50,15 @@ final class RealmDB {
         }
     }
     
-    public func load() -> Results<Location> {
+    public func loadLocations() -> Results<Location> {
         let realm = try! Realm()
         let locations: Results<Location> = realm.objects(Location.self)
+        return locations
+    }
+    
+    public func loadUsers() -> Results<User> {
+        let realm = try! Realm()
+        let locations: Results<User> = realm.objects(User.self)
         return locations
     }
     

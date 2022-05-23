@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="EPd-ZZ-W1q">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
@@ -24,10 +24,10 @@
             </objects>
             <point key="canvasLocation" x="-1554" y="106"/>
         </scene>
-        <!--View Controller-->
+        <!--Login View Controller-->
         <scene sceneID="jSl-UA-VuJ">
             <objects>
-                <viewController id="LJS-KI-aTe" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="loginVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="LJS-KI-aTe" customClass="LoginViewController" customModule="GoogleMapsLocationTestApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="no7-yq-mV3">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -36,6 +36,9 @@
                                 <rect key="frame" x="152" y="831" width="110.5" height="31"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="filled" title="Регистрация"/>
+                                <connections>
+                                    <action selector="signUpButtonTapped" destination="LJS-KI-aTe" eventType="touchUpInside" id="CyF-Wm-qUn"/>
+                                </connections>
                             </button>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="24" translatesAutoresizingMaskIntoConstraints="NO" id="fkA-tf-68H">
                                 <rect key="frame" x="57" y="352.5" width="300" height="191.5"/>
@@ -69,6 +72,9 @@
                                         </constraints>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="filled" title="Вход"/>
+                                        <connections>
+                                            <action selector="loginButtonTapped" destination="LJS-KI-aTe" eventType="touchUpInside" id="4xa-NS-TLB"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                             </stackView>
@@ -84,6 +90,8 @@
                     </view>
                     <navigationItem key="navigationItem" id="aBu-Ja-3D2"/>
                     <connections>
+                        <outlet property="loginTextField" destination="cV8-LX-Urg" id="NXW-XW-EuN"/>
+                        <outlet property="passwordTextField" destination="ZK4-DG-Y2C" id="GQH-fC-k6Q"/>
                         <segue destination="BYZ-38-t0r" kind="show" id="5gx-sZ-z9T"/>
                         <segue destination="NBV-wp-Qyz" kind="show" id="gWx-gP-Xh1"/>
                     </connections>
@@ -95,7 +103,7 @@
         <!--Map-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="GoogleMapsLocationTestApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="mainVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="BYZ-38-t0r" customClass="ViewController" customModule="GoogleMapsLocationTestApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -180,16 +188,16 @@
             </objects>
             <point key="canvasLocation" x="136" y="106"/>
         </scene>
-        <!--View Controller-->
+        <!--Sign Up View Controller-->
         <scene sceneID="yoa-8e-djd">
             <objects>
-                <viewController id="NBV-wp-Qyz" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="signVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="NBV-wp-Qyz" customClass="SignUpViewController" customModule="GoogleMapsLocationTestApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="lIG-PT-JWG">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="3P2-vy-KpV">
-                                <rect key="frame" x="57" y="376.5" width="300" height="143.5"/>
+                                <rect key="frame" x="57" y="355.5" width="300" height="185.5"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Регистрация" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4JC-lY-b84">
                                         <rect key="frame" x="99" y="0.0" width="102" height="20.5"/>
@@ -197,7 +205,7 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="cWH-qK-cCv">
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter login" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="cWH-qK-cCv">
                                         <rect key="frame" x="0.0" y="28.5" width="300" height="34"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="300" id="Gua-l0-DCM"/>
@@ -205,7 +213,7 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="DFF-2W-85f">
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="DFF-2W-85f">
                                         <rect key="frame" x="0.0" y="70.5" width="300" height="34"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="300" id="ERC-Zb-tjm"/>
@@ -213,10 +221,21 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Comfirm Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="hGi-96-qPM">
+                                        <rect key="frame" x="0.0" y="112.5" width="300" height="34"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="300" id="hm4-9U-kw8"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zdZ-7G-GvL">
-                                        <rect key="frame" x="68" y="112.5" width="164" height="31"/>
+                                        <rect key="frame" x="68" y="154.5" width="164" height="31"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="filled" title="Зарегистрироваться"/>
+                                        <connections>
+                                            <action selector="signUpButtonTapped" destination="NBV-wp-Qyz" eventType="touchUpInside" id="tzO-Vo-HhT"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                             </stackView>
@@ -229,6 +248,12 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="8PD-Oq-K86"/>
+                    <connections>
+                        <outlet property="confirmPassword" destination="hGi-96-qPM" id="oBv-V8-BBv"/>
+                        <outlet property="loginTextField" destination="cWH-qK-cCv" id="zj6-bI-Lkx"/>
+                        <outlet property="passwordTextField" destination="DFF-2W-85f" id="poO-bI-G28"/>
+                        <outlet property="signUpButton" destination="zdZ-7G-GvL" id="wTZ-Lv-7wY"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LcV-6z-m5F" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
