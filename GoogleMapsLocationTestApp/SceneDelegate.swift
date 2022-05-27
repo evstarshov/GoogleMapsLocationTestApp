@@ -28,12 +28,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     }
 
     func sceneDidBecomeActive(_ scene: UIScene) {
-        print("did become active")
         appSwitcherView?.removeFromSuperview()
     }
 
     func sceneWillResignActive(_ scene: UIScene) {
-        print("adding subview")
         let blurredImage = applyGaussianBlur(on: createScreenshotOfCurrentContext() ?? UIImage(), withBlurFactor: 4.5)
         appSwitcherView = UIImageView(image: blurredImage)
         self.window?.addSubview(appSwitcherView!)
@@ -51,7 +49,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     }
     
     func createScreenshotOfCurrentContext() -> UIImage? {
-        print("creating screenshot")
         UIGraphicsBeginImageContext(self.window?.screen.bounds.size ?? CGSize())
         guard let currentContext = UIGraphicsGetCurrentContext() else {
             return nil
@@ -63,7 +60,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     }
     
     func applyGaussianBlur(on image: UIImage, withBlurFactor blurFactor : CGFloat) -> UIImage? {
-        print("set gaussian filter")
         guard let inputImage = CIImage(image: image) else {
             return nil
         }

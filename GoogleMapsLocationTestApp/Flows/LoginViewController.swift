@@ -34,7 +34,7 @@ class LoginViewController: UIViewController {
         guard let users = users else {
             return
         }
-        if users.contains(where: { $0.login == loginTextField.text && $0.password == passwordTextField.text }) {
+        if users.contains(where: { $0.login == loginTextField.text && $0.password == passwordTextField.text?.sha1() }) {
             checkLogin()
         } else {
             showAlert()

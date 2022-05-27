@@ -52,7 +52,7 @@ class SignUpViewController: UIViewController {
             })
             showAlertUserisinDB()
         } else {
-            usertoDB.append(User(login: loginTextField.text!, password: passwordTextField.text!))
+            usertoDB.append(User(login: loginTextField.text!, password: passwordTextField.text!.sha1()))
             database.saveUsers(usertoDB)
             showComfirmation()
         }
