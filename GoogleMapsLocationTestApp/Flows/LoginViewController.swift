@@ -21,6 +21,7 @@ class LoginViewController: UIViewController {
     
     // MARK: Properties
     
+    private let disposeBag = DisposeBag()
     private let database = RealmDB()
     private var users: Results<User>?
     
@@ -29,6 +30,10 @@ class LoginViewController: UIViewController {
         loadUsers()
         configureLoginBindings()
         print("Realm file is here: \(Realm.Configuration.defaultConfiguration.fileURL!)")
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        loadUsers()
     }
     
     // MARK: IBActions
@@ -58,6 +63,7 @@ class LoginViewController: UIViewController {
     }
     
     private func checkLogin() {
+        print("Opening main VC")
         let mainVC = self.storyboard?.instantiateViewController(withIdentifier: "mainVC") as! ViewController
         mainVC.modalPresentationStyle = .fullScreen
         self.navigationController?.pushViewController(mainVC, animated: true)
@@ -81,10 +87,11 @@ class LoginViewController: UIViewController {
         Observable
             .combineLatest(loginTextField.rx.text, passwordTextField.rx.text)
             .map { login, password in
+                print("reading textfields")
                 return !(login ?? "").isEmpty && !(password ?? "").isEmpty
             }
-            .bind { [weak loginButton] inputFilled in
+            .subscribe { [weak loginButton] inputFilled in
                 loginButton?.isEnabled = inputFilled
-            }
+            }.disposed(by: disposeBag)
     }
 }

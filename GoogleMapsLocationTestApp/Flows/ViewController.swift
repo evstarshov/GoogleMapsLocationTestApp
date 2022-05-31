@@ -9,6 +9,7 @@ import UIKit
 import GoogleMaps
 import Realm
 import RealmSwift
+import RxSwift
 
 class ViewController: UIViewController {
     
@@ -22,12 +23,13 @@ class ViewController: UIViewController {
     
     // MARK: Properties
     
+    private let disposeBag = DisposeBag()
     private let database = RealmDB()
     private let locationObject = LocationObject()
+    private let locationManager = LocationManager.instance
     private var beginBackgroundTask: UIBackgroundTaskIdentifier?
     private var coordinate: CLLocationCoordinate2D?
     private var manualMarker: GMSMarker?
-    private var locationManager: CLLocationManager?
     private var route: GMSPolyline?
     private var routePath: GMSMutablePath?
     private var locationsArr = [Location]()
@@ -35,6 +37,7 @@ class ViewController: UIViewController {
     private var locationsDB: Results<Location>?
     private var markers = [GMSMarker]()
     private var isTracking: Bool = false
+    var usselesExampleVariable = ""
 
     
     // MARK: Lifecycle methods
@@ -49,7 +52,7 @@ class ViewController: UIViewController {
     // MARK: IBActions
     
     @IBAction func currentLocation(_ sender: Any) {
-        locationManager?.requestLocation()
+        locationManager.requestLocation()
         configureMap()
     }
     
@@ -60,7 +63,7 @@ class ViewController: UIViewController {
     @IBAction func beginTrackButtonTapped() {
         cllocationCoordinates.removeAll()
         route?.map = mapView
-        locationManager?.startUpdatingLocation()
+        locationManager.startUpdatingLocation()
         isTracking = true
     }
     
@@ -70,7 +73,7 @@ class ViewController: UIViewController {
         database.saveCLLToRealm(cllocationCoordinates)
         route?.map = nil
         cllocationCoordinates.removeAll()
-        locationManager?.stopUpdatingLocation()
+        locationManager.stopUpdatingLocation()
         isTracking = false
         
     }
@@ -104,6 +107,23 @@ class ViewController: UIViewController {
         mapView.delegate = self
     }
     
+    private func configureLocationManager() {
+        locationManager
+            .location
+            .asObservable()
+            .subscribe { [weak self] location in
+                print("Inside closure \(location)")
+                guard let location = location.element?.last else { return }
+                self?.routePath?.add(location.coordinate)
+                self?.route?.path  = self?.routePath
+                let position = GMSCameraPosition.camera(withTarget: location.coordinate, zoom: 15)
+                self?.coordinate = location.coordinate
+                self?.mapView.animate(to: position)
+                self?.cllocationCoordinates.append(location)
+                
+            }.disposed(by: disposeBag)
+    }
+    
     private func addMarker() {
         print("Placing marker")
         let marker = GMSMarker(position: coordinate ?? CLLocationCoordinate2D(latitude: 55.7522, longitude: 37.6156))
@@ -116,16 +136,6 @@ class ViewController: UIViewController {
         print("removing marker")
         manualMarker?.map = nil
         manualMarker = nil
-    }
-    
-    private func configureLocationManager() {
-        locationManager = CLLocationManager()
-        locationManager?.delegate = self
-        locationManager?.requestAlwaysAuthorization()
-        locationManager?.allowsBackgroundLocationUpdates = true
-        locationManager?.pausesLocationUpdatesAutomatically = false
-        locationManager?.startMonitoringSignificantLocationChanges()
-        locationManager?.requestWhenInUseAuthorization()
     }
     
     private func loadRoute(_ routesArray: [LocationObject], index: Int = 0) {
@@ -144,7 +154,7 @@ class ViewController: UIViewController {
             self?.database.saveCLLToRealm(self!.cllocationCoordinates)
             self?.route?.map = nil
             self?.cllocationCoordinates.removeAll()
-            self?.locationManager?.stopUpdatingLocation()
+            self?.locationManager.stopUpdatingLocation()
             self?.isTracking = false
         }
         alertVC.addAction(alertItem)
@@ -168,23 +178,23 @@ extension ViewController: GMSMapViewDelegate {
     }
 }
 
-extension ViewController: CLLocationManagerDelegate {
-    
-    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        guard let location = locations.last else { return }
-        route = GMSPolyline()
-        routePath = GMSMutablePath()
-        routePath?.add(location.coordinate)
-        route?.path = routePath
-        let position = GMSCameraPosition.camera(withTarget: location.coordinate, zoom: 15)
-        coordinate = location.coordinate
-        mapView.animate(to: position)
-        cllocationCoordinates.append(location)
-    }
-    
-    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
-        print(error)
-    }
-}
+//extension ViewController: CLLocationManagerDelegate {
+//    
+//    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+//        guard let location = locations.last else { return }
+//        route = GMSPolyline()
+//        routePath = GMSMutablePath()
+//        routePath?.add(location.coordinate)
+//        route?.path = routePath
+//        let position = GMSCameraPosition.camera(withTarget: location.coordinate, zoom: 15)
+//        coordinate = location.coordinate
+//        mapView.animate(to: position)
+//        cllocationCoordinates.append(location)
+//    }
+//    
+//    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+//        print(error)
+//    }
+//}
 
 

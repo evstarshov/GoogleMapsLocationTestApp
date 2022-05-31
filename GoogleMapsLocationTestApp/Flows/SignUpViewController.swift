@@ -48,7 +48,7 @@ class SignUpViewController: UIViewController {
         if users.contains(where: { $0.login == loginTextField.text }) == true {
             guard let index = users.firstIndex(where: { $0.login == loginTextField.text }) else { return }
             try! realm.write ({
-            users[index].password = passwordTextField.text!
+                users[index].password = passwordTextField.text!.sha1()
             })
             showAlertUserisinDB()
         } else {
