@@ -8,6 +8,8 @@
 import UIKit
 import Realm
 import RealmSwift
+import RxSwift
+import RxCocoa
 
 class LoginViewController: UIViewController {
     
@@ -15,6 +17,7 @@ class LoginViewController: UIViewController {
     
     @IBOutlet weak var loginTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
+    @IBOutlet weak var loginButton: UIButton!
     
     // MARK: Properties
     
@@ -24,6 +27,7 @@ class LoginViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         loadUsers()
+        configureLoginBindings()
         print("Realm file is here: \(Realm.Configuration.defaultConfiguration.fileURL!)")
     }
     
@@ -71,5 +75,16 @@ class LoginViewController: UIViewController {
         let alertItem = UIAlertAction(title: "Ok", style: .cancel)
         alertVC.addAction(alertItem)
         present(alertVC, animated: true)
+    }
+    
+    private func configureLoginBindings() {
+        Observable
+            .combineLatest(loginTextField.rx.text, passwordTextField.rx.text)
+            .map { login, password in
+                return !(login ?? "").isEmpty && !(password ?? "").isEmpty
+            }
+            .bind { [weak loginButton] inputFilled in
+                loginButton?.isEnabled = inputFilled
+            }
     }
 }

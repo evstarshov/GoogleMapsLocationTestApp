@@ -90,6 +90,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="aBu-Ja-3D2"/>
                     <connections>
+                        <outlet property="loginButton" destination="eSx-01-db6" id="CLc-4b-9gD"/>
                         <outlet property="loginTextField" destination="cV8-LX-Urg" id="NXW-XW-EuN"/>
                         <outlet property="passwordTextField" destination="ZK4-DG-Y2C" id="GQH-fC-k6Q"/>
                         <segue destination="BYZ-38-t0r" kind="show" id="5gx-sZ-z9T"/>
