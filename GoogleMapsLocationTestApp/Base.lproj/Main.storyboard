@@ -33,7 +33,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dfg-Oa-25G">
-                                <rect key="frame" x="152" y="831" width="110.5" height="31"/>
+                                <rect key="frame" x="144" y="832.5" width="126" height="34.5"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="filled" title="Регистрация"/>
                                 <connections>
@@ -41,7 +41,7 @@
                                 </connections>
                             </button>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="24" translatesAutoresizingMaskIntoConstraints="NO" id="fkA-tf-68H">
-                                <rect key="frame" x="57" y="352.5" width="300" height="191.5"/>
+                                <rect key="frame" x="57" y="350.5" width="300" height="195"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Вход в приложение" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FwM-6c-aL8">
                                         <rect key="frame" x="72" y="0.0" width="156" height="20.5"/>
@@ -66,7 +66,7 @@
                                         <textInputTraits key="textInputTraits" autocorrectionType="no" secureTextEntry="YES" textContentType="password"/>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eSx-01-db6">
-                                        <rect key="frame" x="25" y="160.5" width="250" height="31"/>
+                                        <rect key="frame" x="25" y="160.5" width="250" height="34.5"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="250" id="coD-SE-ctR"/>
                                         </constraints>
@@ -82,7 +82,7 @@
                         <viewLayoutGuide key="safeArea" id="yby-CI-Piq"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="dfg-Oa-25G" firstAttribute="bottom" secondItem="yby-CI-Piq" secondAttribute="bottom" id="Ggk-AH-lPa"/>
+                            <constraint firstItem="dfg-Oa-25G" firstAttribute="bottom" secondItem="yby-CI-Piq" secondAttribute="bottom" constant="5" id="Ggk-AH-lPa"/>
                             <constraint firstItem="dfg-Oa-25G" firstAttribute="centerX" secondItem="no7-yq-mV3" secondAttribute="centerX" id="ktB-hF-j1C"/>
                             <constraint firstItem="fkA-tf-68H" firstAttribute="centerY" secondItem="no7-yq-mV3" secondAttribute="centerY" id="u72-6x-57M"/>
                             <constraint firstItem="fkA-tf-68H" firstAttribute="centerX" secondItem="no7-yq-mV3" secondAttribute="centerX" id="uvG-x1-gRe"/>
@@ -110,14 +110,14 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Avo-Vs-x6Y" customClass="GMSMapView">
-                                <rect key="frame" x="0.0" y="88" width="414" height="735"/>
+                                <rect key="frame" x="0.0" y="88" width="414" height="731.5"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </view>
                             <stackView opaque="NO" contentMode="scaleToFill" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="ju5-ys-0Mm">
-                                <rect key="frame" x="5" y="831" width="404" height="31"/>
+                                <rect key="frame" x="5" y="827.5" width="404" height="34.5"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="R2j-3p-fuH">
-                                        <rect key="frame" x="0.0" y="0.0" width="124.5" height="31"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="124.5" height="34.5"/>
                                         <color key="backgroundColor" systemColor="systemBlueColor"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="plain" title="Begin Track">
@@ -128,7 +128,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jij-Yn-f27">
-                                        <rect key="frame" x="139.5" y="0.0" width="125" height="31"/>
+                                        <rect key="frame" x="139.5" y="0.0" width="125" height="34.5"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="plain" title="Add marker">
                                             <backgroundConfiguration key="background">
@@ -141,7 +141,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ilh-YG-rnN">
-                                        <rect key="frame" x="279.5" y="0.0" width="124.5" height="31"/>
+                                        <rect key="frame" x="279.5" y="0.0" width="124.5" height="34.5"/>
                                         <color key="backgroundColor" systemColor="systemBlueColor"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="plain" title="Stop Track">
@@ -198,7 +198,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="3P2-vy-KpV">
-                                <rect key="frame" x="57" y="355.5" width="300" height="185.5"/>
+                                <rect key="frame" x="57" y="353.5" width="300" height="189"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Регистрация" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4JC-lY-b84">
                                         <rect key="frame" x="99" y="0.0" width="102" height="20.5"/>
@@ -231,7 +231,7 @@
                                         <textInputTraits key="textInputTraits" autocorrectionType="no" secureTextEntry="YES" textContentType="new-password"/>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zdZ-7G-GvL">
-                                        <rect key="frame" x="68" y="154.5" width="164" height="31"/>
+                                        <rect key="frame" x="55.5" y="154.5" width="189" height="34.5"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="filled" title="Зарегистрироваться"/>
                                         <connections>
