@@ -178,23 +178,3 @@ extension ViewController: GMSMapViewDelegate {
     }
 }
 
-//extension ViewController: CLLocationManagerDelegate {
-//    
-//    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-//        guard let location = locations.last else { return }
-//        route = GMSPolyline()
-//        routePath = GMSMutablePath()
-//        routePath?.add(location.coordinate)
-//        route?.path = routePath
-//        let position = GMSCameraPosition.camera(withTarget: location.coordinate, zoom: 15)
-//        coordinate = location.coordinate
-//        mapView.animate(to: position)
-//        cllocationCoordinates.append(location)
-//    }
-//    
-//    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
-//        print(error)
-//    }
-//}
-
-
