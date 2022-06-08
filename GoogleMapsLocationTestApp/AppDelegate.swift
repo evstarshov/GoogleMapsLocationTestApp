@@ -22,7 +22,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 print("Permission error")
                 return
             }
-            
+            self.sendNotificationRequest(content: <#T##UNNotificationContent#>, trigger: <#T##UNNotificationTrigger#>)
         }
         
         return true
@@ -56,6 +56,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             }
         }
     }
+    
+    func makeNotificationContent() -> UNNotificationContent {
+        let content = UNMutableNotificationContent()
+        content.title = "Hello"
+        content.subtitle = "I'm your notification"
+        content.body = "Some text"
+        content.badge = 1
+        return content
+    }
+    
+    
 
 }
 
