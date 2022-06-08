@@ -12,11 +12,12 @@ import RealmSwift
 class SignUpViewController: UIViewController {
     
     // MARK: IBOutlets
-
+    
     @IBOutlet weak var loginTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var confirmPassword: UITextField!
     @IBOutlet weak var signUpButton: UIButton!
+    
     
     // MARK: Properties
     
@@ -32,10 +33,15 @@ class SignUpViewController: UIViewController {
         print("Realm file is here: \(Realm.Configuration.defaultConfiguration.fileURL!)")
     }
     
-    // MARK: IBOutlets
+    // MARK: IBAction func
     
     @IBAction func signUpButtonTapped() {
         signNewUser()
+    }
+    
+    @IBAction func takePictureButtonTapped() {
+        print("Image button tapped")
+        takePicture()
     }
     
     // MARK: Private methods
@@ -77,5 +83,43 @@ class SignUpViewController: UIViewController {
         alertVC.addAction(alertItem)
         present(alertVC, animated: true)
     }
+    
+    private func takePicture() {
+        print("Trying to take picture")
+        guard UIImagePickerController.isSourceTypeAvailable(.camera) else {
+            let alert  = UIAlertController(title: "Warning", message: "You don't have camera", preferredStyle: .alert)
+                        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                        self.present(alert, animated: true, completion: nil)
+            return }
+        let imagePickerController = UIImagePickerController()
+        imagePickerController.sourceType = UIImagePickerController.SourceType.camera
+        imagePickerController.allowsEditing = true
+        imagePickerController.delegate = self
+        present(imagePickerController, animated: true)
+    }
+    
+}
 
+// MARK: Image picker controller extension delegate
+
+extension SignUpViewController: UINavigationControllerDelegate, UIImagePickerControllerDelegate {
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        picker.dismiss(animated: true)
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        let image = extractImage(from: info)
+        print(image!)
+        picker.dismiss(animated: true)
+    }
+    
+    private func extractImage(from info: [UIImagePickerController.InfoKey : Any]) -> UIImage? {
+        if let image = info[UIImagePickerController.InfoKey.editedImage] as? UIImage {
+            return image
+        } else if let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
+            return image
+        } else {
+            return nil
+        }
+    }
 }
