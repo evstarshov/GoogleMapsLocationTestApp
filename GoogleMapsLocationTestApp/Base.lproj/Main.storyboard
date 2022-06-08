@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="qCM-vk-ohk">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="EPd-ZZ-W1q">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
@@ -9,36 +9,126 @@
     </dependencies>
     <scenes>
         <!--Navigation Controller-->
-        <scene sceneID="osM-ea-ZqW">
+        <scene sceneID="wod-dC-mNN">
             <objects>
-                <navigationController id="qCM-vk-ohk" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="dGf-0J-apx">
+                <navigationController id="EPd-ZZ-W1q" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="sES-km-0xI">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
-                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="HQ8-XZ-CRN"/>
+                        <segue destination="LJS-KI-aTe" kind="relationship" relationship="rootViewController" id="1yR-km-eyV"/>
                     </connections>
                 </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="MaD-3Y-FNN" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="POQ-hl-exx" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-826" y="98"/>
+            <point key="canvasLocation" x="-1554" y="106"/>
+        </scene>
+        <!--Login View Controller-->
+        <scene sceneID="jSl-UA-VuJ">
+            <objects>
+                <viewController storyboardIdentifier="loginVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="LJS-KI-aTe" customClass="LoginViewController" customModule="GoogleMapsLocationTestApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="no7-yq-mV3">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dfg-Oa-25G">
+                                <rect key="frame" x="144" y="832.5" width="126" height="34.5"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="filled" title="Регистрация"/>
+                                <connections>
+                                    <action selector="signUpButtonTapped" destination="LJS-KI-aTe" eventType="touchUpInside" id="CyF-Wm-qUn"/>
+                                </connections>
+                            </button>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="24" translatesAutoresizingMaskIntoConstraints="NO" id="fkA-tf-68H">
+                                <rect key="frame" x="57" y="350.5" width="300" height="195"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Вход в приложение" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FwM-6c-aL8">
+                                        <rect key="frame" x="72" y="0.0" width="156" height="20.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Введите логин" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="cV8-LX-Urg">
+                                        <rect key="frame" x="0.0" y="44.5" width="300" height="34"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="300" id="zRA-SR-Ez7"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Введите пароль" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ZK4-DG-Y2C">
+                                        <rect key="frame" x="0.0" y="102.5" width="300" height="34"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="300" id="vTo-wB-fOA"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" autocorrectionType="no" secureTextEntry="YES" textContentType="password"/>
+                                    </textField>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eSx-01-db6">
+                                        <rect key="frame" x="25" y="160.5" width="250" height="34.5"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="250" id="coD-SE-ctR"/>
+                                        </constraints>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="filled" title="Вход"/>
+                                        <connections>
+                                            <action selector="loginButtonTapped" destination="LJS-KI-aTe" eventType="touchUpInside" id="4xa-NS-TLB"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="yby-CI-Piq"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="dfg-Oa-25G" firstAttribute="bottom" secondItem="yby-CI-Piq" secondAttribute="bottom" constant="5" id="Ggk-AH-lPa"/>
+                            <constraint firstItem="dfg-Oa-25G" firstAttribute="centerX" secondItem="no7-yq-mV3" secondAttribute="centerX" id="ktB-hF-j1C"/>
+                            <constraint firstItem="fkA-tf-68H" firstAttribute="centerY" secondItem="no7-yq-mV3" secondAttribute="centerY" id="u72-6x-57M"/>
+                            <constraint firstItem="fkA-tf-68H" firstAttribute="centerX" secondItem="no7-yq-mV3" secondAttribute="centerX" id="uvG-x1-gRe"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="aBu-Ja-3D2"/>
+                    <connections>
+                        <outlet property="loginButton" destination="eSx-01-db6" id="CLc-4b-9gD"/>
+                        <outlet property="loginTextField" destination="cV8-LX-Urg" id="NXW-XW-EuN"/>
+                        <outlet property="passwordTextField" destination="ZK4-DG-Y2C" id="GQH-fC-k6Q"/>
+                        <segue destination="BYZ-38-t0r" kind="show" id="5gx-sZ-z9T"/>
+                        <segue destination="NBV-wp-Qyz" kind="show" id="gWx-gP-Xh1"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="6Tl-T7-kSH" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-733.33333333333337" y="105.80357142857143"/>
         </scene>
         <!--Map-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="GoogleMapsLocationTestApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="mainVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="BYZ-38-t0r" customClass="ViewController" customModule="GoogleMapsLocationTestApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Avo-Vs-x6Y" customClass="GMSMapView">
-                                <rect key="frame" x="0.0" y="88" width="414" height="774"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Avo-Vs-x6Y" customClass="GMSMapView">
+                                <rect key="frame" x="0.0" y="88" width="414" height="731.5"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </view>
+                            <stackView opaque="NO" contentMode="scaleToFill" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="ju5-ys-0Mm">
+                                <rect key="frame" x="5" y="827.5" width="404" height="34.5"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jij-Yn-f27">
-                                        <rect key="frame" x="307" y="743" width="99" height="31"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="R2j-3p-fuH">
+                                        <rect key="frame" x="0.0" y="0.0" width="124.5" height="34.5"/>
+                                        <color key="backgroundColor" systemColor="systemBlueColor"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain" title="Begin Track">
+                                            <color key="baseForegroundColor" systemColor="systemBackgroundColor"/>
+                                        </buttonConfiguration>
+                                        <connections>
+                                            <action selector="beginTrackButtonTapped" destination="BYZ-38-t0r" eventType="touchUpInside" id="nGp-WN-v0n"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jij-Yn-f27">
+                                        <rect key="frame" x="139.5" y="0.0" width="125" height="34.5"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="plain" title="Add marker">
                                             <backgroundConfiguration key="background">
@@ -50,17 +140,36 @@
                                             <action selector="addMarkerWithSender:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Qjm-8Q-p6H"/>
                                         </connections>
                                     </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ilh-YG-rnN">
+                                        <rect key="frame" x="279.5" y="0.0" width="124.5" height="34.5"/>
+                                        <color key="backgroundColor" systemColor="systemBlueColor"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain" title="Stop Track">
+                                            <color key="baseForegroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </buttonConfiguration>
+                                        <connections>
+                                            <action selector="stopTrackButtonTapped" destination="BYZ-38-t0r" eventType="touchUpInside" id="a28-an-iSj"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                            </view>
+                            </stackView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="Avo-Vs-x6Y" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="ETF-3Q-cLB"/>
+                            <constraint firstItem="Avo-Vs-x6Y" firstAttribute="centerX" secondItem="ju5-ys-0Mm" secondAttribute="centerX" id="I1U-NG-XIF"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="ju5-ys-0Mm" secondAttribute="trailing" constant="5" id="JXL-De-jjf"/>
+                            <constraint firstItem="ju5-ys-0Mm" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="YQM-sI-tIp"/>
+                            <constraint firstItem="ju5-ys-0Mm" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="5" id="apa-2Q-iyp"/>
+                            <constraint firstItem="Avo-Vs-x6Y" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="nS2-eG-Iwo"/>
+                            <constraint firstItem="ju5-ys-0Mm" firstAttribute="top" secondItem="Avo-Vs-x6Y" secondAttribute="bottom" constant="8" symbolic="YES" id="u9F-hX-GlR"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Map" id="hBb-Be-TLZ">
-                        <barButtonItem key="leftBarButtonItem" title="Update Location" id="kdb-gn-Adc">
+                        <barButtonItem key="leftBarButtonItem" title="Last Route" id="0us-Eb-lVi">
                             <connections>
-                                <action selector="updateLocation:" destination="BYZ-38-t0r" id="WU1-Hy-SeL"/>
+                                <action selector="lastRouteButtonTapped" destination="BYZ-38-t0r" id="Zs5-q8-qPZ"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Current Location" id="rgk-Vv-P9b">
@@ -71,12 +180,85 @@
                     </navigationItem>
                     <connections>
                         <outlet property="addMarkerButton" destination="Jij-Yn-f27" id="HCZ-fn-xAi"/>
+                        <outlet property="beginTrackButton" destination="R2j-3p-fuH" id="C9w-Jp-4LE"/>
                         <outlet property="mapView" destination="Avo-Vs-x6Y" id="0SZ-yk-p5t"/>
+                        <outlet property="stopTrackButton" destination="Ilh-YG-rnN" id="lnT-ci-PkO"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="131.8840579710145" y="97.767857142857139"/>
+            <point key="canvasLocation" x="136" y="106"/>
+        </scene>
+        <!--Sign Up View Controller-->
+        <scene sceneID="yoa-8e-djd">
+            <objects>
+                <viewController storyboardIdentifier="signVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="NBV-wp-Qyz" customClass="SignUpViewController" customModule="GoogleMapsLocationTestApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="lIG-PT-JWG">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="3P2-vy-KpV">
+                                <rect key="frame" x="57" y="353.5" width="300" height="189"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Регистрация" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4JC-lY-b84">
+                                        <rect key="frame" x="99" y="0.0" width="102" height="20.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter login" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="cWH-qK-cCv">
+                                        <rect key="frame" x="0.0" y="28.5" width="300" height="34"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="300" id="Gua-l0-DCM"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="DFF-2W-85f">
+                                        <rect key="frame" x="0.0" y="70.5" width="300" height="34"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="300" id="ERC-Zb-tjm"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" autocorrectionType="no" secureTextEntry="YES" textContentType="new-password"/>
+                                    </textField>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Comfirm Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="hGi-96-qPM">
+                                        <rect key="frame" x="0.0" y="112.5" width="300" height="34"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="300" id="hm4-9U-kw8"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" autocorrectionType="no" secureTextEntry="YES" textContentType="new-password"/>
+                                    </textField>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zdZ-7G-GvL">
+                                        <rect key="frame" x="55.5" y="154.5" width="189" height="34.5"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="filled" title="Зарегистрироваться"/>
+                                        <connections>
+                                            <action selector="signUpButtonTapped" destination="NBV-wp-Qyz" eventType="touchUpInside" id="tzO-Vo-HhT"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="VlL-XH-QHK"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="3P2-vy-KpV" firstAttribute="centerY" secondItem="lIG-PT-JWG" secondAttribute="centerY" id="BCU-0l-arm"/>
+                            <constraint firstItem="3P2-vy-KpV" firstAttribute="centerX" secondItem="lIG-PT-JWG" secondAttribute="centerX" id="J0j-5B-R7h"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="8PD-Oq-K86"/>
+                    <connections>
+                        <outlet property="confirmPassword" destination="hGi-96-qPM" id="oBv-V8-BBv"/>
+                        <outlet property="loginTextField" destination="cWH-qK-cCv" id="zj6-bI-Lkx"/>
+                        <outlet property="passwordTextField" destination="DFF-2W-85f" id="poO-bI-G28"/>
+                        <outlet property="signUpButton" destination="zdZ-7G-GvL" id="wTZ-Lv-7wY"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="LcV-6z-m5F" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="134.78260869565219" y="826.33928571428567"/>
         </scene>
     </scenes>
     <resources>
@@ -85,6 +267,9 @@
         </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemBlueColor">
+            <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>
