@@ -64,7 +64,8 @@ class LoginViewController: UIViewController {
     }
     
     private func checkLogin() {
-        print("Opening main VC")
+        UserIsLoggedIn.shared.userLogin = loginTextField.text
+        print("Picked user \(UserIsLoggedIn.shared.userLogin)")
         let mainVC = self.storyboard?.instantiateViewController(withIdentifier: "mainVC") as! ViewController
         mainVC.modalPresentationStyle = .fullScreen
         self.navigationController?.pushViewController(mainVC, animated: true)

@@ -34,14 +34,14 @@ class ViewController: UIViewController {
     private var locationsDB = [LocationObject]()
     private var markers = [GMSMarker]()
     private var isTracking: Bool = false
-    var usselesExampleVariable = ""
-
+    var user: User?
     
     // MARK: Lifecycle methods
     
     override func viewDidLoad() {
         super.viewDidLoad()
         locationsDB = database.getPersistedRoutes()
+        user = database.findUser(named: UserIsLoggedIn.shared.userLogin ?? "eroor loading user")
         configureMap()
         configureLocationManager()
         print("Realm file is here: \(Realm.Configuration.defaultConfiguration.fileURL!)")
@@ -121,8 +121,16 @@ class ViewController: UIViewController {
     
     private func addMarker() {
         print("Placing marker")
+        let rect = CGRect(x: 0, y: 0, width: 50, height: 50)
+        let view = UIView(frame: rect)
+        view.backgroundColor = .red
+        let imageView = UIImageView(frame: rect)
+        let imageString = user?.imageData.toImage()
+        imageView.image = imageString
+        view.addSubview(imageView)
         let marker = GMSMarker(position: coordinates.last ?? CLLocationCoordinate2D(latitude: 55.7522, longitude: 37.6156))
         marker.map = mapView
+        marker.iconView = view
         self.manualMarker = marker
         markers.append(marker)
     }
