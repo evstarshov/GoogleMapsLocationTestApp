@@ -59,15 +59,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func makeNotificationContent() -> UNNotificationContent {
         let content = UNMutableNotificationContent()
-        content.title = "Hello"
-        content.subtitle = "I'm your notification"
-        content.body = "Some text"
+        content.title = "Привет"
+        content.subtitle = "Вы давно не использовали наше приложение"
+        content.body = "Ждем вас обратно"
         content.badge = 1
         return content
     }
     
     func makeIntervalNotificationTrigger() -> UNNotificationTrigger {
-        return UNTimeIntervalNotificationTrigger(timeInterval: 60, repeats: true)
+        return UNTimeIntervalNotificationTrigger(timeInterval: 20, repeats: true)
     }
 
 }
