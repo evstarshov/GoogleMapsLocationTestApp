@@ -17,6 +17,7 @@ class SignUpViewController: UIViewController {
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var confirmPassword: UITextField!
     @IBOutlet weak var signUpButton: UIButton!
+    @IBOutlet weak var avatarImage: UIImageView!
     
     
     // MARK: Properties
@@ -24,11 +25,13 @@ class SignUpViewController: UIViewController {
     private let database = RealmDB()
     private var users: Results<User>?
     private var usertoDB = [User]()
+    private var imagePicker: ImagePicker!
     
     // MARK: Lifecycle methods
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.imagePicker = ImagePicker(presentationController: self, delegate: self)
         users = database.loadUsers()
         print("Realm file is here: \(Realm.Configuration.defaultConfiguration.fileURL!)")
     }
@@ -39,16 +42,8 @@ class SignUpViewController: UIViewController {
         signNewUser()
     }
     
-    @IBAction func takePictureButtonTapped() {
-        let alert = UIAlertController(title: "Choose Image", message: nil, preferredStyle: .actionSheet)
-        alert.addAction(UIAlertAction(title: "Camera", style: .default, handler: { _ in
-            self.takePictureFromCamera()
-        }))
-        alert.addAction(UIAlertAction(title: "Gallery", style: .default, handler: { _ in
-            self.takePictureFromGallery()
-        }))
-        alert.addAction(UIAlertAction.init(title: "Cancel", style: .cancel, handler: nil))
-        self.present(alert, animated: true, completion: nil)
+    @IBAction func takePictureButtonTapped(_ sender: Any) {
+        self.imagePicker.present(from: sender as! UIView)
     }
     
     // MARK: Private methods
@@ -60,7 +55,8 @@ class SignUpViewController: UIViewController {
         if users.contains(where: { $0.login == loginTextField.text }) == true {
             showAlertUserisinDB()
         } else {
-            usertoDB.append(User(login: loginTextField.text!, password: passwordTextField.text!.sha1()))
+            let image = self.avatarImage.image
+                usertoDB.append(User(login: loginTextField.text!, password: passwordTextField.text!.sha1(), imageData: (image?.toPngString()) ?? "camera"))
             database.save(usertoDB)
             showComfirmation()
         }
@@ -90,55 +86,13 @@ class SignUpViewController: UIViewController {
         alertVC.addAction(alertItem)
         present(alertVC, animated: true)
     }
-    
-    private func takePictureFromCamera() {
-        guard UIImagePickerController.isSourceTypeAvailable(.camera) else {
-            let alert  = UIAlertController(title: "Warning", message: "You don't have camera", preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-            self.present(alert, animated: true, completion: nil)
-            return }
-        let imagePickerController = UIImagePickerController()
-        imagePickerController.sourceType = UIImagePickerController.SourceType.camera
-        imagePickerController.allowsEditing = true
-        imagePickerController.delegate = self
-        present(imagePickerController, animated: true)
-    }
-    
-    private func takePictureFromGallery() {
-        guard UIImagePickerController.isSourceTypeAvailable(.photoLibrary) else {
-            let alert  = UIAlertController(title: "Warning", message: "You don't have gallery", preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-            self.present(alert, animated: true, completion: nil)
-            return }
-        let imagePickerController = UIImagePickerController()
-        imagePickerController.sourceType = UIImagePickerController.SourceType.photoLibrary
-        imagePickerController.allowsEditing = true
-        imagePickerController.delegate = self
-        present(imagePickerController, animated: true)
-    }
-    
 }
 
 // MARK: Image picker controller extension delegate
 
-extension SignUpViewController: UINavigationControllerDelegate, UIImagePickerControllerDelegate {
-    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
-        picker.dismiss(animated: true)
-    }
-    
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        let image = extractImage(from: info)
-        print(image!)
-        picker.dismiss(animated: true)
-    }
-    
-    private func extractImage(from info: [UIImagePickerController.InfoKey : Any]) -> UIImage? {
-        if let image = info[UIImagePickerController.InfoKey.editedImage] as? UIImage {
-            return image
-        } else if let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
-            return image
-        } else {
-            return nil
-        }
+extension SignUpViewController: ImagePickerDelegate {
+
+    func didSelect(image: UIImage?) {
+        self.avatarImage.image = image
     }
 }

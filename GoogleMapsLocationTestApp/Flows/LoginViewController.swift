@@ -32,7 +32,7 @@ class LoginViewController: UIViewController {
         print("Realm file is here: \(Realm.Configuration.defaultConfiguration.fileURL!)")
     }
     
-    override func viewDidAppear(_ animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         loadUsers()
     }
     

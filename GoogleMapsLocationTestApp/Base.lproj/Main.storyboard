@@ -198,16 +198,23 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="3P2-vy-KpV">
-                                <rect key="frame" x="57" y="336" width="300" height="224.5"/>
+                                <rect key="frame" x="57" y="282" width="300" height="332.5"/>
                                 <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="A3N-HM-0c5">
+                                        <rect key="frame" x="100" y="0.0" width="100" height="100"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="100" id="JDc-C9-9IV"/>
+                                            <constraint firstAttribute="height" constant="100" id="i8T-H3-5Pr"/>
+                                        </constraints>
+                                    </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Регистрация" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4JC-lY-b84">
-                                        <rect key="frame" x="99" y="0.0" width="102" height="20.5"/>
+                                        <rect key="frame" x="99" y="108" width="102" height="20.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter login" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="cWH-qK-cCv">
-                                        <rect key="frame" x="0.0" y="28.5" width="300" height="34"/>
+                                        <rect key="frame" x="0.0" y="136.5" width="300" height="34"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="300" id="Gua-l0-DCM"/>
                                         </constraints>
@@ -215,7 +222,7 @@
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="DFF-2W-85f">
-                                        <rect key="frame" x="0.0" y="70.5" width="300" height="34"/>
+                                        <rect key="frame" x="0.0" y="178.5" width="300" height="34"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="300" id="ERC-Zb-tjm"/>
                                         </constraints>
@@ -223,7 +230,7 @@
                                         <textInputTraits key="textInputTraits" autocorrectionType="no" secureTextEntry="YES" textContentType="new-password"/>
                                     </textField>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Comfirm Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="hGi-96-qPM">
-                                        <rect key="frame" x="0.0" y="112.5" width="300" height="34"/>
+                                        <rect key="frame" x="0.0" y="220.5" width="300" height="34"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="300" id="hm4-9U-kw8"/>
                                         </constraints>
@@ -231,15 +238,15 @@
                                         <textInputTraits key="textInputTraits" autocorrectionType="no" secureTextEntry="YES" textContentType="new-password"/>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QFn-qq-dLV">
-                                        <rect key="frame" x="63.5" y="154.5" width="173" height="31"/>
+                                        <rect key="frame" x="63.5" y="262.5" width="173" height="31"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="tinted" image="camera" catalog="system" title="Выбрать аватарку"/>
                                         <connections>
-                                            <action selector="takePictureButtonTapped" destination="NBV-wp-Qyz" eventType="touchUpInside" id="yO2-tP-Bta"/>
+                                            <action selector="takePictureButtonTapped:" destination="NBV-wp-Qyz" eventType="touchUpInside" id="nz9-Lc-qIV"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zdZ-7G-GvL">
-                                        <rect key="frame" x="68" y="193.5" width="164" height="31"/>
+                                        <rect key="frame" x="68" y="301.5" width="164" height="31"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="filled" title="Зарегистрироваться"/>
                                         <connections>
@@ -258,6 +265,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="8PD-Oq-K86"/>
                     <connections>
+                        <outlet property="avatarImage" destination="A3N-HM-0c5" id="9mE-Tb-yDp"/>
                         <outlet property="confirmPassword" destination="hGi-96-qPM" id="oBv-V8-BBv"/>
                         <outlet property="loginTextField" destination="cWH-qK-cCv" id="zj6-bI-Lkx"/>
                         <outlet property="passwordTextField" destination="DFF-2W-85f" id="poO-bI-G28"/>

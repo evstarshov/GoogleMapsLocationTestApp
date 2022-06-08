@@ -20,6 +20,8 @@
 		3A2320832837D2CB00F5CD5C /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A2320822837D2CB00F5CD5C /* User.swift */; };
 		3A2320862837DB5C00F5CD5C /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A2320852837DB5C00F5CD5C /* LoginViewController.swift */; };
 		3A2320882837DB7A00F5CD5C /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A2320872837DB7A00F5CD5C /* SignUpViewController.swift */; };
+		3A45E7E72850C31400D7E088 /* UIimageStringConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A45E7E62850C31400D7E088 /* UIimageStringConverter.swift */; };
+		3A45E7E92850D90200D7E088 /* PickerProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A45E7E82850D90200D7E088 /* PickerProvider.swift */; };
 		3A626A0A2833F586005496FC /* RealmDB.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A626A092833F586005496FC /* RealmDB.swift */; };
 		3A626A0D2833F668005496FC /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A626A0C2833F668005496FC /* Location.swift */; };
 		3A97B599283508C5007CB1AE /* ArrayMidlle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A97B598283508C5007CB1AE /* ArrayMidlle.swift */; };
@@ -66,6 +68,8 @@
 		3A2320822837D2CB00F5CD5C /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		3A2320852837DB5C00F5CD5C /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		3A2320872837DB7A00F5CD5C /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
+		3A45E7E62850C31400D7E088 /* UIimageStringConverter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIimageStringConverter.swift; sourceTree = "<group>"; };
+		3A45E7E82850D90200D7E088 /* PickerProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PickerProvider.swift; sourceTree = "<group>"; };
 		3A626A092833F586005496FC /* RealmDB.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmDB.swift; sourceTree = "<group>"; };
 		3A626A0C2833F668005496FC /* Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
 		3A97B598283508C5007CB1AE /* ArrayMidlle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArrayMidlle.swift; sourceTree = "<group>"; };
@@ -188,6 +192,7 @@
 			children = (
 				3A97B598283508C5007CB1AE /* ArrayMidlle.swift */,
 				3AACEE8C2840E6500042D694 /* CrypographicString.swift */,
+				3A45E7E62850C31400D7E088 /* UIimageStringConverter.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -195,6 +200,7 @@
 		3AC9D34728461FA7002D745E /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				3A45E7E82850D90200D7E088 /* PickerProvider.swift */,
 				3AC9D34828461FB5002D745E /* LocationManager.swift */,
 			);
 			path = Core;
@@ -509,6 +515,7 @@
 				3A17EB6B282E4D1600CFDB83 /* ViewController.swift in Sources */,
 				3A17EB67282E4D1600CFDB83 /* AppDelegate.swift in Sources */,
 				3A626A0D2833F668005496FC /* Location.swift in Sources */,
+				3A45E7E72850C31400D7E088 /* UIimageStringConverter.swift in Sources */,
 				3AC9D34928461FB5002D745E /* LocationManager.swift in Sources */,
 				3A17EB69282E4D1600CFDB83 /* SceneDelegate.swift in Sources */,
 				3A2320862837DB5C00F5CD5C /* LoginViewController.swift in Sources */,
@@ -517,6 +524,7 @@
 				3A626A0A2833F586005496FC /* RealmDB.swift in Sources */,
 				3A2320832837D2CB00F5CD5C /* User.swift in Sources */,
 				3AACEE8D2840E6500042D694 /* CrypographicString.swift in Sources */,
+				3A45E7E92850D90200D7E088 /* PickerProvider.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
