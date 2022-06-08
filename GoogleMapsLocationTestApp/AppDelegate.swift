@@ -22,7 +22,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 print("Permission error")
                 return
             }
-            self.sendNotificationRequest(content: <#T##UNNotificationContent#>, trigger: <#T##UNNotificationTrigger#>)
+            self.sendNotificationRequest(content: self.makeNotificationContent(), trigger: self.makeIntervalNotificationTrigger())
         }
         
         return true
