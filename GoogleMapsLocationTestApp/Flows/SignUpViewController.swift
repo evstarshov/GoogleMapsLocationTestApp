@@ -72,9 +72,9 @@ class SignUpViewController: UIViewController {
     private func showComfirmation() {
         let alertVC = UIAlertController(title: "Registered!", message: "Succsessful registration", preferredStyle: .alert)
         let alertItem = UIAlertAction(title: "Ok", style: .cancel) { [weak self] _ in
-            let loginVC = self?.storyboard?.instantiateViewController(withIdentifier: "loginVC") as! LoginViewController
-            loginVC.modalPresentationStyle = .fullScreen
-            self?.navigationController?.present(loginVC, animated: true)
+//            let loginVC = self?.storyboard?.instantiateViewController(withIdentifier: "loginVC") as! LoginViewController
+//            loginVC.modalPresentationStyle = .fullScreen
+            self?.dismiss(animated: true)
         }
         alertVC.addAction(alertItem)
         present(alertVC, animated: true)

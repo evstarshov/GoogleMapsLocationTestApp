@@ -52,13 +52,14 @@ class LoginViewController: UIViewController {
     
     @IBAction func signUpButtonTapped() {
         let signVC = self.storyboard?.instantiateViewController(withIdentifier: "signVC") as! SignUpViewController
-        signVC.modalPresentationStyle = .fullScreen
-        self.navigationController?.pushViewController(signVC, animated: true)
+        //signVC.modalPresentationStyle = .fullScreen
+        self.navigationController?.present(signVC, animated: true)
     }
     
     // MARK: Private methods
     
     private func loadUsers() {
+        print("Loading users")
         users = database.loadUsers()
     }
     
