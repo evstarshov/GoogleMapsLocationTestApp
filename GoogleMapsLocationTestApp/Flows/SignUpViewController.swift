@@ -40,8 +40,15 @@ class SignUpViewController: UIViewController {
     }
     
     @IBAction func takePictureButtonTapped() {
-        print("Image button tapped")
-        takePicture()
+        let alert = UIAlertController(title: "Choose Image", message: nil, preferredStyle: .actionSheet)
+        alert.addAction(UIAlertAction(title: "Camera", style: .default, handler: { _ in
+            self.takePictureFromCamera()
+        }))
+        alert.addAction(UIAlertAction(title: "Gallery", style: .default, handler: { _ in
+            self.takePictureFromGallery()
+        }))
+        alert.addAction(UIAlertAction.init(title: "Cancel", style: .cancel, handler: nil))
+        self.present(alert, animated: true, completion: nil)
     }
     
     // MARK: Private methods
@@ -84,15 +91,27 @@ class SignUpViewController: UIViewController {
         present(alertVC, animated: true)
     }
     
-    private func takePicture() {
-        print("Trying to take picture")
+    private func takePictureFromCamera() {
         guard UIImagePickerController.isSourceTypeAvailable(.camera) else {
             let alert  = UIAlertController(title: "Warning", message: "You don't have camera", preferredStyle: .alert)
-                        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-                        self.present(alert, animated: true, completion: nil)
+            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+            self.present(alert, animated: true, completion: nil)
             return }
         let imagePickerController = UIImagePickerController()
         imagePickerController.sourceType = UIImagePickerController.SourceType.camera
+        imagePickerController.allowsEditing = true
+        imagePickerController.delegate = self
+        present(imagePickerController, animated: true)
+    }
+    
+    private func takePictureFromGallery() {
+        guard UIImagePickerController.isSourceTypeAvailable(.photoLibrary) else {
+            let alert  = UIAlertController(title: "Warning", message: "You don't have gallery", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+            self.present(alert, animated: true, completion: nil)
+            return }
+        let imagePickerController = UIImagePickerController()
+        imagePickerController.sourceType = UIImagePickerController.SourceType.photoLibrary
         imagePickerController.allowsEditing = true
         imagePickerController.delegate = self
         present(imagePickerController, animated: true)
