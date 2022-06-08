@@ -66,7 +66,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return content
     }
     
-    
+    func makeIntervalNotificationTrigger() -> UNNotificationTrigger {
+        return UNTimeIntervalNotificationTrigger(timeInterval: 60, repeats: true)
+    }
 
 }
 
