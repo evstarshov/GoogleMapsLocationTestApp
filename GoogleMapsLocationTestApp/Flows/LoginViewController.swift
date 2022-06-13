@@ -32,7 +32,7 @@ class LoginViewController: UIViewController {
         print("Realm file is here: \(Realm.Configuration.defaultConfiguration.fileURL!)")
     }
     
-    override func viewDidAppear(_ animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         loadUsers()
     }
     
@@ -52,18 +52,20 @@ class LoginViewController: UIViewController {
     
     @IBAction func signUpButtonTapped() {
         let signVC = self.storyboard?.instantiateViewController(withIdentifier: "signVC") as! SignUpViewController
-        signVC.modalPresentationStyle = .fullScreen
-        self.navigationController?.pushViewController(signVC, animated: true)
+        //signVC.modalPresentationStyle = .fullScreen
+        self.navigationController?.present(signVC, animated: true)
     }
     
     // MARK: Private methods
     
     private func loadUsers() {
+        print("Loading users")
         users = database.loadUsers()
     }
     
     private func checkLogin() {
-        print("Opening main VC")
+        UserIsLoggedIn.shared.userLogin = loginTextField.text
+        print("Picked user \(UserIsLoggedIn.shared.userLogin)")
         let mainVC = self.storyboard?.instantiateViewController(withIdentifier: "mainVC") as! ViewController
         mainVC.modalPresentationStyle = .fullScreen
         self.navigationController?.pushViewController(mainVC, animated: true)

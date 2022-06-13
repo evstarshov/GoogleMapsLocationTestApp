@@ -49,6 +49,27 @@ final class RealmDB {
         return locations
     }
     
+    public func findUser(named: String) -> User? {
+        let realmDB = try! Realm()
+        if let query = realmDB.objects(User.self).filter({ $0.login == named }).first {
+            print("loading user")
+            return query
+            
+        } else {
+            return nil
+        }
+    }
+    
+//    let realm = try! Realm()
+//    if let jim = realm.objects(Artist.self).filter("name == 'Jim'").first {
+//       let myCities = jim.citiesOfInterest
+//       let showResults = realm.objects(Show.self)
+//                              .filter("city IN %@ AND !(ANY artistResponses.artist.name == 'Jim')", myCities)
+//       for show in showResults {
+//          print(show.name)
+//       }
+//    }
+    
     public func delete(_ items: [LocationObject]) {
         guard let realmDB = try? Realm() else { return }
         try! realmDB.write {

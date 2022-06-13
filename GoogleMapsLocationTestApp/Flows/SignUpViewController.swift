@@ -12,30 +12,38 @@ import RealmSwift
 class SignUpViewController: UIViewController {
     
     // MARK: IBOutlets
-
+    
     @IBOutlet weak var loginTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var confirmPassword: UITextField!
     @IBOutlet weak var signUpButton: UIButton!
+    @IBOutlet weak var avatarImage: UIImageView!
+    
     
     // MARK: Properties
     
     private let database = RealmDB()
     private var users: Results<User>?
     private var usertoDB = [User]()
+    private var imagePicker: ImagePicker!
     
     // MARK: Lifecycle methods
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.imagePicker = ImagePicker(presentationController: self, delegate: self)
         users = database.loadUsers()
         print("Realm file is here: \(Realm.Configuration.defaultConfiguration.fileURL!)")
     }
     
-    // MARK: IBOutlets
+    // MARK: IBAction func
     
     @IBAction func signUpButtonTapped() {
         signNewUser()
+    }
+    
+    @IBAction func takePictureButtonTapped(_ sender: Any) {
+        self.imagePicker.present(from: sender as! UIView)
     }
     
     // MARK: Private methods
@@ -47,7 +55,8 @@ class SignUpViewController: UIViewController {
         if users.contains(where: { $0.login == loginTextField.text }) == true {
             showAlertUserisinDB()
         } else {
-            usertoDB.append(User(login: loginTextField.text!, password: passwordTextField.text!.sha1()))
+            let image = self.avatarImage.image
+                usertoDB.append(User(login: loginTextField.text!, password: passwordTextField.text!.sha1(), imageData: (image?.toPngString()) ?? "camera"))
             database.save(usertoDB)
             showComfirmation()
         }
@@ -63,9 +72,7 @@ class SignUpViewController: UIViewController {
     private func showComfirmation() {
         let alertVC = UIAlertController(title: "Registered!", message: "Succsessful registration", preferredStyle: .alert)
         let alertItem = UIAlertAction(title: "Ok", style: .cancel) { [weak self] _ in
-            let loginVC = self?.storyboard?.instantiateViewController(withIdentifier: "loginVC") as! LoginViewController
-            loginVC.modalPresentationStyle = .fullScreen
-            self?.navigationController?.present(loginVC, animated: true)
+            self?.dismiss(animated: true)
         }
         alertVC.addAction(alertItem)
         present(alertVC, animated: true)
@@ -77,5 +84,13 @@ class SignUpViewController: UIViewController {
         alertVC.addAction(alertItem)
         present(alertVC, animated: true)
     }
+}
 
+// MARK: Image picker controller extension delegate
+
+extension SignUpViewController: ImagePickerDelegate {
+
+    func didSelect(image: UIImage?) {
+        self.avatarImage.image = image
+    }
 }
