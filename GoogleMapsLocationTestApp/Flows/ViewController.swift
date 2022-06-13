@@ -29,10 +29,12 @@ class ViewController: UIViewController {
     private var beginBackgroundTask: UIBackgroundTaskIdentifier?
     private var coordinates = [CLLocationCoordinate2D]()
     private var manualMarker: GMSMarker?
+    private var avatarMarker: GMSMarker?
     private var route: GMSPolyline?
     private var routePath: GMSMutablePath?
     private var locationsDB = [LocationObject]()
     private var markers = [GMSMarker]()
+    private var avatarMarkers = [GMSMarker]()
     private var isTracking: Bool = false
     var user: User?
     
@@ -113,6 +115,7 @@ class ViewController: UIViewController {
                 self?.routePath?.add(location.coordinate)
                 self?.route?.path  = self?.routePath
                 let position = GMSCameraPosition.camera(withTarget: location.coordinate, zoom: 15)
+                self?.avatarMarker == nil ? self?.addAvatarmarker(position: location.coordinate) : self?.removeAvatarMarker()
                 self?.coordinates.append(location.coordinate)
                 self?.mapView.animate(to: position)
                 self?.database.saveCLLToRealm(self!.coordinates)
@@ -121,24 +124,41 @@ class ViewController: UIViewController {
     
     private func addMarker() {
         print("Placing marker")
-        let rect = CGRect(x: 0, y: 0, width: 50, height: 50)
-        let view = UIView(frame: rect)
-        view.backgroundColor = .red
-        let imageView = UIImageView(frame: rect)
-        let imageString = user?.imageData.toImage()
-        imageView.image = imageString
-        view.addSubview(imageView)
         let marker = GMSMarker(position: coordinates.last ?? CLLocationCoordinate2D(latitude: 55.7522, longitude: 37.6156))
         marker.map = mapView
-        marker.iconView = view
         self.manualMarker = marker
         markers.append(marker)
+    }
+    
+    private func addAvatarmarker(position: CLLocationCoordinate2D) {
+        let rect = CGRect(x: 0, y: 0, width: 50, height: 50)
+        let view = UIView(frame: rect)
+        let imageView = UIImageView(frame: rect)
+        let imageString = user?.imageData.toImage()
+        if user?.imageData == "camera" {
+            imageView.image = UIImage(named: "camera")
+        }
+        else {
+            imageView.image = imageString
+        }
+        view.addSubview(imageView)
+        let marker = GMSMarker(position: position)
+        marker.map = mapView
+        marker.iconView = view
+        self.avatarMarker = marker
+        avatarMarkers.append(marker)
     }
     
     private func removeMarker() {
         print("removing marker")
         manualMarker?.map = nil
         manualMarker = nil
+    }
+    
+    private func removeAvatarMarker() {
+        print("removing marker")
+        avatarMarker?.map = nil
+        avatarMarker = nil
     }
     
     private func loadRoute(_ routesArray: [LocationObject], index: Int = 0) {
